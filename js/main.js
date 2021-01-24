@@ -22,8 +22,9 @@ console.log('task-02:', getUsersWithEyeColor(users, 'blue')); // [объект M
 
 //task-03
 const getUsersWithGender = (users, gender) => {
-  const filteredObj = users.filter(item => item.gender === gender);
-  const usersWithGender = filteredObj.map(item => item.name);
+  const usersWithGender = users
+    .filter(item => item.gender === gender)
+    .map(item => item.name);
   return usersWithGender;
 };
 
@@ -35,10 +36,8 @@ const getInactiveUsers = users => users.filter(item => !item.isActive);
 console.log('task-04:', getInactiveUsers(users)); // [объект Moore Hensley, объект Ross Vazquez, объект Blackburn Dotson]
 
 // task-05
-const getUserWithEmail = (users, email) => {
-  const userWithEmail = users.find(item => item.email === email);
-  return userWithEmail;
-};
+const getUserWithEmail = (users, email) =>
+  users.find(item => item.email === email);
 
 console.log('task-05:', getUserWithEmail(users, 'shereeanthony@kog.com')); // {объект пользователя Sheree Anthony}
 console.log('task-05:', getUserWithEmail(users, 'elmahead@omatom.com')); // {объект пользователя Elma Head}
@@ -64,9 +63,9 @@ console.log('task-07:', calculateTotalBalance(users)); // 20916
 
 // task-08
 const getUsersWithFriend = (users, friendName) => {
-  const usersWithFriend = users.filter(item =>
-    item.friends.find(friend => friend === friendName),
-  );
+  const usersWithFriend = users
+    .filter(item => item.friends.find(friend => friend === friendName))
+    .map(user => user.name);
   return usersWithFriend;
 };
 
@@ -75,8 +74,7 @@ console.log('task-08:', getUsersWithFriend(users, 'Goldie Gentry')); // [ 'Elma 
 
 //task-09
 const getNamesSortedByFriendsCount = users => {
-  const usersClone = JSON.parse(JSON.stringify(users));
-  const sortedByFriendsCount = usersClone
+  const sortedByFriendsCount = [...users]
     .sort((a, b) => a.friends.length - b.friends.length)
     .map(item => item.name);
   return sortedByFriendsCount;
