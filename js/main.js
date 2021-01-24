@@ -6,7 +6,10 @@ const getUserNames = users => {
   return userNames;
 };
 
+const getUserNames2 = users => users.map(item => item.name);
+
 console.log('task-01:', getUserNames(users));
+console.log('task-01.1:', getUserNames2(users));
 // [ 'Moore Hensley', 'Sharlene Bush', 'Ross Vazquez', 'Elma Head', 'Carey Barr', 'Blackburn Dotson', 'Sheree Anthony' ]
 
 //task-02
@@ -72,7 +75,8 @@ console.log('task-08:', getUsersWithFriend(users, 'Goldie Gentry')); // [ 'Elma 
 
 //task-09
 const getNamesSortedByFriendsCount = users => {
-  const sortedByFriendsCount = users
+  const usersClone = JSON.parse(JSON.stringify(users));
+  const sortedByFriendsCount = usersClone
     .sort((a, b) => a.friends.length - b.friends.length)
     .map(item => item.name);
   return sortedByFriendsCount;
@@ -100,3 +104,5 @@ const getSortedUniqueSkills = users => {
 console.log('task-10:', getSortedUniqueSkills(users));
 /* [ 'adipisicing', 'amet', 'anim', 'commodo', 'culpa', 'elit', 'ex', 'ipsum', 'irure', 
 'laborum', 'lorem', 'mollit', 'non', 'nostrud', 'nulla', 'proident', 'tempor', 'velit', 'veniam' ]*/
+
+console.log(users);
