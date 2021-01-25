@@ -99,7 +99,18 @@ const getSortedUniqueSkills = users => {
   return sortedUniqueSkills;
 };
 
+const getSortedUniqueSkills2 = users =>
+  Array.from(
+    new Set(
+      users.reduce((acc, item) => {
+        acc.push(...item.skills);
+        return acc;
+      }, []),
+    ),
+  ).sort();
+
 console.log('task-10:', getSortedUniqueSkills(users));
+console.log('task-10.1:', getSortedUniqueSkills2(users));
 /* [ 'adipisicing', 'amet', 'anim', 'commodo', 'culpa', 'elit', 'ex', 'ipsum', 'irure', 
 'laborum', 'lorem', 'mollit', 'non', 'nostrud', 'nulla', 'proident', 'tempor', 'velit', 'veniam' ]*/
 
