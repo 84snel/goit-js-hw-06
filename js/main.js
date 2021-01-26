@@ -6,7 +6,7 @@ const getUserNames = users => {
   return userNames;
 };
 
-const getUserNames2 = users => users.map(item => item.name);
+const getUserNames2 = users => users.map(({ name }) => name);
 
 console.log('task-01:', getUserNames(users));
 console.log('task-01.1:', getUserNames2(users));
@@ -85,14 +85,9 @@ console.log('task-09:', getNamesSortedByFriendsCount(users));
 
 //task-10
 const getSortedUniqueSkills = users => {
-  const skills = users.reduce((acc, item) => {
-    acc.push(...item.skills);
-    return acc;
-  }, []);
+  const skills = users.flatMap(({ skills }) => skills);
   const uniqueSkills = skills.reduce((acc, item) => {
-    if (!acc.includes(item)) {
-      acc.push(item);
-    }
+    !acc.includes(item) ? acc.push(item) : false;
     return acc;
   }, []);
   const sortedUniqueSkills = uniqueSkills.sort();
